@@ -16,10 +16,10 @@ const ProductOverview =  (props: Props) => {
 
     return (
         <div> 
-            <div className='grid grid-cols-2 md:grid-cols'>
+            <div className='grid grid-cols-2 lg:grid-cols-3'>
                 {products.length > 0 ? 
                 products.map(product => 
-                 <ProductCard id={product.id} name={product.name} reason={product.reason}></ProductCard>
+                 <ProductCard key={product.id} id={product.id} name={product.name} reason={product.reason} productPictures={product.productPictures}></ProductCard>
                 ) : <NoElementsFound/>
 }
             </div>

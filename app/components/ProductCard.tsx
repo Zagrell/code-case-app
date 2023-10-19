@@ -8,30 +8,37 @@ import { Product } from '../page';
 
 
 
-const ProductCard: React.FC<Product> = ({id, name, reason}) => {
+const ProductCard: React.FC<Product> = ({id, name, reason, productPictures}) => {
 
     const [image, setImage] = useState<Blob>();
     const [loading, setLoading] = useState<boolean>(true);
 
     
     useEffect(() => {
-      setImage(undefined);
       
-      fetch("https://pfp-public-productdb-api.azurewebsites.net/api/picture/"+id)
-        .then(response => {
-          if(!response.ok){
-              throw new Error();
-          }
-          return response.blob()
-        
-        })
-        .then(blob => {
-          setImage(blob)
-          setLoading(false)
-        })
-        .catch(error => {
-          setLoading(false)
-        });
+      console.log(productPictures,"pictures");
+
+      if(!productPictures){
+        setLoading(false)
+        return
+      }
+        fetch("https://pfp-public-productdb-api.azurewebsites.net/api/picture/"+productPictures[0].pictureId)
+          .then(response => {
+            if(!response.ok){
+                throw new Error();
+            }
+            return response.blob()
+          
+          })
+          .then(blob => {
+            setImage(blob)
+            setLoading(false)
+          })
+          .catch(error => {
+            setLoading(false)
+            setImage(undefined)
+          });
+          
     },[]);
   
     const parse = require('html-react-parser');
@@ -41,10 +48,10 @@ const ProductCard: React.FC<Product> = ({id, name, reason}) => {
   
 
   return (
-    <div key={id} className="card card-bordered bg-base-100 shadow-xl text-sm m-2">
+    <div key={id} className="card card-bordered bg-base-100 shadow-xl h-96 text-sm m-2">
         {
          loading ? <span className="loading loading-spinner loading-lg"></span> : 
-          (image && <figure><img src={URL.createObjectURL(image)} alt="Product image" /></figure>)
+          (image && <figure><img src={URL.createObjectURL(image)} className='max-h-60' alt=""/></figure>)
         }
         <div className="card-body">
             <h1 className="card-title text-sm">{name}</h1>
