@@ -7,11 +7,8 @@ type Props = {
     products: Product[];
 }
 
-
-
 const ProductOverview =  (props: Props) => {
     const {products} = props;
-
 
 
     return (
@@ -20,7 +17,8 @@ const ProductOverview =  (props: Props) => {
                 {products.length > 0 ? 
                 products.map(product => 
                  <ProductCard key={product.id} id={product.id} name={product.name} reason={product.reason} productPictures={product.productPictures}></ProductCard>
-                ) : <NoElementsFound/>
+                ) :
+                 <NoElementsFound/>
 }
             </div>
         </div>

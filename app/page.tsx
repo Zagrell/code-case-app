@@ -24,10 +24,6 @@ const ProductsPage = () => {
 
     const [loading, setLoading] = useState<boolean>(true);
 
-
-
-    
-
     useEffect(() => {
       fetchProducts();
     },[complianceTypeIds])
@@ -56,9 +52,6 @@ const ProductsPage = () => {
       });
     }
 
-
-
-
     return (
     <>
       <div className="drawer lg:drawer-open">
@@ -74,13 +67,13 @@ const ProductsPage = () => {
         </div> 
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label> 
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+          <div className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
 
             <FilterOptions searchText={searchText} setSearchText={setSearchText} fetchProducts={fetchProducts}
               complianceTypeIds={complianceTypeIds} setComplianceTypeIds={setComplianceTypeIds}
             />
 
-          </ul>
+          </div>
   
         </div>
       </div>  

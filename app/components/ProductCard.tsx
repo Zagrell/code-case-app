@@ -4,10 +4,6 @@ import styles from './PtoductCard.module.css';
 import { Product } from '../page';
 
 
-
-
-
-
 const ProductCard: React.FC<Product> = ({id, name, reason, productPictures}) => {
 
     const [image, setImage] = useState<Blob>();
@@ -15,8 +11,6 @@ const ProductCard: React.FC<Product> = ({id, name, reason, productPictures}) => 
 
     
     useEffect(() => {
-      
-      console.log(productPictures,"pictures");
 
       if(!productPictures){
         setLoading(false)
@@ -41,22 +35,14 @@ const ProductCard: React.FC<Product> = ({id, name, reason, productPictures}) => 
           
     },[]);
   
-    const parse = require('html-react-parser');
-
-
-
-  
-
   return (
     <div key={id} className="card card-bordered bg-base-100 shadow-xl h-96 text-sm m-2">
         {
          loading ? <span className="loading loading-spinner loading-lg"></span> : 
-          (image && <figure><img src={URL.createObjectURL(image)} className='max-h-60' alt=""/></figure>)
+          (image && <figure><img src={URL.createObjectURL(image)} alt=""/></figure>) || <div />
         }
         <div className="card-body">
             <h1 className="card-title text-sm">{name}</h1>
-            {//<p>{parse(reason)}</p>
-}
             <div className="card-actions justify-end">
                 
             </div>
