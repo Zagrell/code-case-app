@@ -9,7 +9,7 @@ export interface Product {
     id: number;
     name: string;
     reason: string;
-
+    productPictures: {pictureId: number}[];
 }
 
 
@@ -50,8 +50,9 @@ const ProductsPage = () => {
       })
       .then(response => response.json())
       .then(json => {
-        setProducts(json.results)
-        setLoading(false)
+
+        setProducts(json.results);
+        setLoading(false);
       });
     }
 
